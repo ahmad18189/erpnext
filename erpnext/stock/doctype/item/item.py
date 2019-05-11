@@ -544,11 +544,7 @@ class Item(WebsiteGenerator):
 						frappe.throw(_("Barcode {0} already used in Item {1}").format(
 							item_barcode.barcode, duplicate[0][0]), frappe.DuplicateEntryError)
 
-					item_barcode.barcode_type = "" if item_barcode.barcode_type not in options else item_barcode.barcode_type
-					if item_barcode.barcode_type and item_barcode.barcode_type.upper() in ('EAN', 'UPC-A', 'EAN-13', 'EAN-8'):
-						if not ean.is_valid(item_barcode.barcode):
-							frappe.throw(_("Barcode {0} is not a valid {1} code").format(
-								item_barcode.barcode, item_barcode.barcode_type), InvalidBarcode)
+					
 
 	def validate_warehouse_for_reorder(self):
 		'''Validate Reorder level table for duplicate and conditional mandatory'''
